@@ -1,0 +1,58 @@
+create database Banco_de_preguntas1;
+use  Banco_de_preguntas1;
+
+create table Proyecto_curricular(
+   id varchar (15) not null,
+   nombre varchar (100),
+   primary key (id)
+); 
+
+create table Docente(
+    id varchar (15) not null,
+    Tipo_id varchar (10),
+    Primer_Nombre varchar (15),
+    Segundo_Nombre varchar (15),
+    Primer_Apellido varchar (15),
+    Segundo_Apellido varchar (15),
+    Profesion varchar (20),
+    Correo varchar (20),
+    id_proyecto varchar (15) not null,
+    primary key (id),
+    foreign key (id_proyecto) references Proyecto_curricular (id)
+);
+
+create table Pregunta (
+     id_Pregunta varchar (10) not null,
+     id_Asignatura varchar (15),
+     Nombre_Tema varchar (100),
+     Nombre_asignatura varchar(50),
+     Texto_Pregunta varchar (200),
+     ocp_1 varchar (100),
+     ocp_2 varchar (100),
+     opc_3 varchar (100),
+     opc_4 varchar (100),
+     opc_correcta varchar (30),
+     primary key (id_Pregunta)
+);
+
+create table Docente_Pregunta(
+  id_docente_fk varchar(15) not null,
+  id_pregunta_fk varchar (10) not null,
+  primary key(id_docente_fk, id_pregunta_fk),
+  foreign key(id_docente_fk) references Docente(id),
+  foreign key(id_pregunta_fk) references Pregunta(id_Pregunta)
+);
+   
+insert into Proyecto_curricular values 
+('001' , 'Tecnología en Gestión de la Producción Industrial por Ciclos Propedéuticos'),
+('002' , 'Tecnología Electrónica por Ciclos Propedéuticos'),
+('003' , 'Tecnología en Construcciones Civiles por Ciclos Propedéuticos'),
+('004' , 'Tecnología en Sistemas Eléctricos de Media y Baja Tensión por Ciclos Propedéuticos'),
+('005' , 'Tecnología en Sistematización de Datos por Ciclos Propedéuticos'),
+('006' , 'Tecnología Mecánica por Ciclos Propedéuticos'),
+('007' , 'Ingeniería Eléctrica por Ciclos Propedéuticos'),
+('008' , 'Ingeniería en Control por Ciclos Propedéuticos'),
+('009' , 'Ingeniería en Telecomunicaciones por Ciclos Propedéuticos'),	
+('010' ,'Ingeniería de Producción por Ciclos Propedéuticos'),
+('011' , 'Ingeniería en Telemática por Ciclos Propedéuticos'),
+('012' , 'Ingeniería Mecánica por Ciclos Propedéuticos');
